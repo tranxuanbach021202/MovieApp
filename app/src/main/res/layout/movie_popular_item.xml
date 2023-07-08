@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginEnd="47dp"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/_92pxh"
+            android:id="@+id/iv_movie_popular_porter"
+            android:src="@drawable/image"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="120dp"
+                tools:text="Venom Let There Be Carnage"
+                android:id="@+id/txt_movie_popular_name"
+                android:layout_height="wrap_content"
+                style="@style/txtMulibold14" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/star" />
+
+                <TextView
+                    android:layout_marginStart="4dp"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/txt_vote_average_popular"
+                    android:layout_height="wrap_content"
+                    tools:text="6.4/10 IMDb" />
+            </LinearLayout>
+
+            <GridView
+                android:layout_width="wrap_content"
+                android:numColumns="3"
+                android:id="@+id/gv_genres_movie"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/clock"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="4dp"
+                    tools:text="1h 47m"
+                    style="@style/time"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

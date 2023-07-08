@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.HomeFragment">
+
+        <View
+            android:layout_width="113dp"
+            android:background="@color/gray_50"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_gravity="top|center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="19dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/menu" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_10pxh"
+                    android:hint="Search Movie"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:paddingTop="@dimen/_5pxh"
+                    android:paddingBottom="@dimen/_5pxh"
+                    android:textSize="@dimen/_12sp"
+                    android:letterSpacing="0.2"
+                    android:background="@drawable/ed_search_background"
+                    android:singleLine="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:src="@drawable/notif" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_76pxh"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Movies"
+                android:layout_weight="0.65"
+                style="@style/txtMerriweatherblack16"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:id="@+id/rvMoviesSearch"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="76dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Now Showing"
+                    android:layout_weight="0.65"
+                    style="@style/txtMerriweatherblack16"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="61dp"
+                    android:layout_height="21dp"
+                    android:letterSpacing="0.01"
+                    tools:text="See more"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="See more"
+                    android:paddingBottom="4dp"
+                    android:paddingEnd="8dp"
+                    style="@style/btnRoundedOutline"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/rvMovieNow"
+                    android:layout_marginStart="20dp"
+                    android:layout_height="wrap_content"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/_10pxh"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Popular"
+                    android:layout_weight="0.65"
+                    style="@style/txtMerriweatherblack16"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="61dp"
+                    android:layout_height="21dp"
+                    android:letterSpacing="0.01"
+                    tools:text="See more"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="See more"
+                    android:paddingBottom="4dp"
+                    android:paddingEnd="8dp"
+                    style="@style/btnRoundedOutline"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvMoviePopular"/>
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>

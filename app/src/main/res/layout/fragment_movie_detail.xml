@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.movieapp.model.Movie" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:background="@color/bluegray_900"
+                    android:layout_height="@dimen/_250pxh" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/baseline_keyboard_backspace_24"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/_20pxh"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/baseline_more_horiz_24"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/_20pxh"
+                        android:layout_height="wrap_content" />
+                </androidx.appcompat.widget.Toolbar>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/backgroud_movie_detail"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:maxWidth="143dp"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.01"
+                        android:id="@+id/txt_movie_name"
+                        android:singleLine="false"
+                        style="@style/txtMulibold14"
+                        tools:text="Spriderman: No Way Home" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/baseline_bookmark_border_24"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/star"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_vote_average"
+                        tools:text="9.1/10 IMDb"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <GridView
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10pxh"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Length\n"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Language\n English"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Rating\nnull"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_10pxh"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Description"
+                        android:layout_weight="0.65"
+                        style="@style/txtMerriweatherblack16"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_10pxh"
+                        android:text="null"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10pxh"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Cast"
+                        android:layout_weight="0.65"
+                        style="@style/txtMerriweatherblack16"
+                        android:layout_marginBottom="@dimen/_10pxh"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
