@@ -6,7 +6,25 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.movieapp.ui.fragment.HomeFragment"
+        android:name="com.example.movieapp.ui.moviehome.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movie_detail_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_detail_fragment"
+        android:name="com.example.movieapp.ui.moviedetail.MovieDetailFragment"
+        android:label="MovieDetailFragment">
+
+        <argument
+            android:name="movieId"
+            app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/descreptionFragment"
+        android:name="com.example.movieapp.ui.descreption.DescreptionFragment"
+        android:label="fragment_descreption"
+        tools:layout="@layout/fragment_descreption" />
 </navigation>

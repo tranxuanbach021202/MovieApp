@@ -1,4 +1,4 @@
-package com.example.movieapp.model
+package com.example.movieapp.data.models
 
 enum class MovieType {
     NOW_SHOWING,

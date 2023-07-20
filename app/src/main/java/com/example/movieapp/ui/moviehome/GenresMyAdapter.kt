@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.adapter
+package com.example.movieapp.ui.moviehome
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.movieapp.R
-import com.example.movieapp.model.GenresMovie
 
-internal class GenresMyAdapter(
+class GenresMyAdapter(
     private val genres : List<Int>,
     private val context: Context
 ) : BaseAdapter(){

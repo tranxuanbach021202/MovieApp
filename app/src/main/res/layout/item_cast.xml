@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item_cast"
+            type="com.example.movieapp.data.models.Cast" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="@dimen/_20pxh"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/_72pxh"
+                app:image="@{`/w45` + item_cast.profilePath}"
+                android:scaleType="centerCrop"
+                android:layout_height="@dimen/_72pxh" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_20pxh"
+            android:maxWidth="@dimen/_75pxh"
+            android:layout_marginStart="@dimen/_5pxh"
+            android:layout_height="wrap_content"
+            tools:text="null"
+            style="@style/txtCastName"
+            android:text="@{item_cast.name}" />
+    </LinearLayout>
+</layout>

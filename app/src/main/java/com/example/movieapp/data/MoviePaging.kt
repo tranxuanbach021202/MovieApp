@@ -3,10 +3,10 @@ package com.example.movieapp.data
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.movieapp.api.MovieApi
-import com.example.movieapp.model.Movie
-import com.example.movieapp.model.MovieResponse
-import com.example.movieapp.model.MovieType
+import com.example.movieapp.data.apis.MovieApi
+import com.example.movieapp.data.models.Movie
+import com.example.movieapp.data.models.MovieResponse
+import com.example.movieapp.data.models.MovieType
 
 
 private const val MOVIE_STARTING_PAGE_INDEX = 1

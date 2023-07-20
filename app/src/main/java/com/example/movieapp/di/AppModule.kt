@@ -1,8 +1,8 @@
 package com.example.movieapp.di
 
-import com.example.movieapp.api.ApiConfig
-import com.example.movieapp.api.MovieApi
-import com.example.movieapp.repository.MovieReponsitory
+import com.example.movieapp.data.apis.ApiConfig
+import com.example.movieapp.data.apis.MovieApi
+import com.example.movieapp.data.repositories.MovieReponsitory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

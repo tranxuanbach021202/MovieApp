@@ -1,30 +1,20 @@
-package com.example.movieapp.ui.viewmodel
+package com.example.movieapp.ui.moviehome
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.movieapp.model.GenresMovie
-import com.example.movieapp.repository.MovieReponsitory
-import com.example.movieapp.model.Movie
-import com.example.movieapp.ultis.Resource
+import com.example.movieapp.data.models.GenresMovie
+import com.example.movieapp.data.repositories.MovieReponsitory
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
+class MovieHomeViewModel @Inject constructor(
     private val movieReponsitory: MovieReponsitory
     ): ViewModel() {
 
