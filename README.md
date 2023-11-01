@@ -1,5 +1,5 @@
 # MovieApp sử dụng để xem các phim đang phổ biến và xem trailer của chúng
-  app sử dụng các công nghệ ở phía dưới và sử dụng kiến trúc MVVM kết hợp clean architecture
+  app sử dụng các công nghệ ở phía dưới và sử dụng kiến trúc MVVM kết hợp Clean Architecture
 ## Công nghệ sử dụng
 - LiveData và ViewModel: Triển khai mô hình MVVM
 - Kotlin coroutine
