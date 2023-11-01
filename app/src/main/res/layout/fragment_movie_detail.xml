@@ -50,6 +50,7 @@
                         android:layout_width="wrap_content"
                         android:src="@drawable/baseline_more_horiz_24"
                         android:layout_gravity="end"
+                        android:visibility="gone"
                         android:layout_marginEnd="@dimen/_20pxh"
                         android:layout_height="wrap_content" />
                 </androidx.appcompat.widget.Toolbar>

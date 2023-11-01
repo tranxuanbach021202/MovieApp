@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -72,6 +74,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getMovieNowShowing().observe(viewLifecycleOwner, {
+                setAnimation()
                 movieNowShowingAdapter.submitData(lifecycle, it)
             })
 
@@ -81,6 +84,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             })
         }
     }
+
+    private fun setAnimation() {
+        val layoutAnimationMovieNow = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_right_to_left)
+        binding.rvMovieNow.layoutAnimation= layoutAnimationMovieNow
+    }
+
+
 
     private fun setupMovieSearch() {
         binding.edSearchMovie.setOnFocusChangeListener{ view, hasFocus ->

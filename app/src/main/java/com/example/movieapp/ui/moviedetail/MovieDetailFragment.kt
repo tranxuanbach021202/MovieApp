@@ -45,6 +45,7 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _movieId.value = safeArgs.movieId
         Log.d(this.javaClass.name, "movieId" + movieId.toString())
+        initView()
         setupToolBar()
 
         movieId.observe(viewLifecycleOwner, {

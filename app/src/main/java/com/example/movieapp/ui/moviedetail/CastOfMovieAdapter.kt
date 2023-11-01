@@ -24,17 +24,15 @@ class CastOfMovieAdapter() : RecyclerView.Adapter<CastOfMovieAdapter.MyViewHolde
 
         fun bind(item: Cast) {
             Log.d("ListCastA", item.toString())
-            with(binding) {
-                itemCast = item
-            }
-
+            binding.itemCast = item
             binding.executePendingBindings()
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemCastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ItemCastBinding>(inflater, R.layout.item_cast, parent, false)
         return MyViewHolder(binding)
     }
 
@@ -44,7 +42,8 @@ class CastOfMovieAdapter() : RecyclerView.Adapter<CastOfMovieAdapter.MyViewHolde
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val cast = listCast.get(position)
+        val cast = listCast[position]
+        Log.d("ListCastO", cast.toString())
         holder.bind(cast)
     }
 }

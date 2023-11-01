@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="item_cast"
+            name="itemCast"
             type="com.example.movieapp.domain.model.Cast" />
     </data>
 
@@ -21,7 +21,7 @@
 
             <ImageView
                 android:layout_width="@dimen/_72pxh"
-                app:image="@{`/w45` + item_cast.profilePath}"
+                app:image="@{`/w45` + itemCast.profilePath}"
                 android:scaleType="centerCrop"
                 android:layout_height="@dimen/_72pxh" />
         </androidx.cardview.widget.CardView>
@@ -34,6 +34,6 @@
             android:layout_height="wrap_content"
             tools:text="null"
             style="@style/txtCastName"
-            android:text="@{item_cast.name}" />
+            android:text="@{itemCast.name}" />
     </LinearLayout>
 </layout>
