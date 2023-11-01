@@ -1,81 +1,86 @@
 package com.example.movieapp.ui.moviedetail
 
-import android.provider.MediaStore.Video
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.data.repositories.MovieReponsitory
-import com.example.movieapp.data.repositories.RepoResult
-import com.example.movieapp.data.repositories.data
-import com.example.movieapp.data.repositories.error
+import androidx.paging.PagingData
+import com.example.movieapp.core.Resource
+import com.example.movieapp.data.repository.MovieReponsitoryImpl
+import com.example.movieapp.domain.model.Cast
+import com.example.movieapp.domain.model.Movie
+import com.example.movieapp.domain.usecase.CastOfMovieUseCase
+import com.example.movieapp.domain.usecase.KeyVideoUseCase
+import com.example.movieapp.domain.usecase.MovieDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val movieReponsitory: MovieReponsitory
+    private val movieDetailUseCase: MovieDetailUseCase,
+    private val castOfMovieUseCase: CastOfMovieUseCase,
+    private val keyVideoUseCase: KeyVideoUseCase
 ) : ViewModel() {
 
-    private val _movieId = MutableLiveData<Int>()
-
-    var isLoading = MutableLiveData(false)
-    fun setMovieId(movieId: Int) {
-        Log.d("MovieDetails", movieId.toString())
-        _movieId.value = movieId
-    }
-
-
-    fun getMovieId() : Int? = _movieId.value
-
-
-    val castResponse = _movieId.switchMap { movieReponsitory.getCastsOfMovie(it)}
-
-    val casts = castResponse.map { it.data?.casts }
-
-    val loading = castResponse.map { it is RepoResult.Loading }
-    val error = castResponse.map { it.error }
-
-
-    fun getCastsOfMovie(movieId : Int) = viewModelScope.launch {
-        try {
-            val casts = movieReponsitory.getCastsOfMovie(movieId)
-        } catch (ex : Exception) {
-            Log.d("MovieDetailViewModel", ex.toString())
+    private val _movieDetail = MutableLiveData<Movie>()
+    val movieDetal : LiveData<Movie> get() = _movieDetail
+    fun fetchMovieDetail(movieId: Int) {
+        viewModelScope.launch {
+            val reponse =  movieDetailUseCase.invoke(movieId)
+            when(reponse) {
+                is Resource.Success -> {
+                    Log.d("MovieViewModelF", reponse.data.runTime.toString())
+                    _movieDetail.value = reponse.data
+                }
+                is Resource.Error -> {
+                    Log.d("MovieViewModelF", "errro")
+                    throw reponse.exception
+                }
+            }
         }
     }
 
-    val movieResponse = _movieId.switchMap { movieReponsitory.getMovieDetail(it) }
+    private val _listCast = MutableLiveData<List<Cast>>()
+    val listCast : LiveData<List<Cast>> get() = _listCast
 
-    val movieDetail = movieResponse.map { it.data }
+    fun getCastOfMovie(movieId: Int) {
+        viewModelScope.launch {
 
-    val loading_movie = movieResponse.map { it is RepoResult.Loading }
-
-    val error_movie = movieResponse.map { it.error }
-
-
-    val videoResponse = _movieId.switchMap { movieReponsitory.getMovideVideo(it) }
-
-
-    val videoDetail  = videoResponse.map { it.data?.results }
-
-
-
-    fun getKeyVideo(): String? {
-        val video = videoDetail.value
-        var trailerKey: String? = null
-        val trailerVideo = video!!.find { it.type == "Trailer" }
-        if (trailerVideo != null) {
-            trailerKey = trailerVideo!!.key
+                val response = castOfMovieUseCase.invoke(movieId)
+                when(response) {
+                    is Resource.Success -> {
+                        _listCast.value = response.data
+                    }
+                    is Resource.Error -> {
+                        response.exception
+                    }
+                }
         }
-        return trailerKey
     }
+
+
+    private val _keyVideo = MutableLiveData<String>()
+    val keyVideo : LiveData<String> get() = _keyVideo
+    fun getKeyVideoTrailer(movieId: Int) {
+        viewModelScope.launch {
+            val response = keyVideoUseCase.invoke(movieId)
+            when(response) {
+                is Resource.Success ->{
+                    _keyVideo.value = response.data
+                }
+
+                is Resource.Error -> {
+                    Log.d("Keyvideo", response.exception.toString())
+                }
+            }
+        }
+    }
+
+
+
 }

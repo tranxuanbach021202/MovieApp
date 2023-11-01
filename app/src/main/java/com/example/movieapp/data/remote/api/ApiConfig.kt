@@ -1,4 +1,4 @@
-package com.example.movieapp.data.apis
+package com.example.movieapp.data.remote.api
 
 import com.example.movieapp.BuildConfig
 import okhttp3.OkHttpClient

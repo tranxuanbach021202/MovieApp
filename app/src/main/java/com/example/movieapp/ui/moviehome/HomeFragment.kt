@@ -7,13 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentHomeBinding
-import com.example.movieapp.data.models.Movie
+import com.example.movieapp.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -21,9 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     val viewModel : MovieHomeViewModel by  viewModels()
-
     private lateinit var controller: NavController
-
     private val navController : NavController by lazy { findNavController()  }
     private val movieNowShowingAdapter : MovieNowShowingAdapter by lazy {
         MovieNowShowingAdapter{ movie ->
@@ -31,18 +31,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             navController.navigate(directions)
         }
     }
+
     private val moviePopularAdapter : MoviePopularAdapter by lazy {
-        MoviePopularAdapter{movie ->
-            val directions = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movie.id)
+        MoviePopularAdapter {
+            val directions = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it.movie.id)
             navController.navigate(directions)
         }
     }
     lateinit var binding: FragmentHomeBinding
-
-
     private val onClickItem: (Movie) -> Unit = {}
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,52 +51,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        initObservers()
         controller = findNavController()
-        setupMovieNowShowing()
-        setupMoviePopular()
-        setupMovieSearch()
-
-
     }
 
-    // Call dữ liệu về cho phần Movie Nowshowing
-    private fun setupMovieNowShowing() {
+    private fun initView() {
 
-
-
-
-        // setup cho list movie nowshowing
+        // setup adapter movie now showing
         binding.rvMovieNow.layoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvMovieNow.adapter = movieNowShowingAdapter
 
-        // call dữ liệu
-        viewModel.moviesNowShowing.observe(viewLifecycleOwner) {
-            movieNowShowingAdapter.submitData(lifecycle, it)
-        }
-    }
 
-
-    // Call dữ liệu về cho Movie Popular
-    private fun setupMoviePopular() {
-        // setup list popular
+        // setup adapter movie popular
         binding.rvMoviePopular.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvMoviePopular.adapter = moviePopularAdapter
 
-
-        // call dữ liệu
-        viewModel.moviesPopular.observe(viewLifecycleOwner) {
-            Log.d("DatarPop", it.toString())
-            moviePopularAdapter.submitData(lifecycle, it)
-        }
-
-        // call thể loại về để hiện thị cho các item của popular
-        viewModel.genresLiveData.observe(viewLifecycleOwner) {
-            Log.d("Genres", it.toString())
-        }
-
-        viewModel.getGenresMovie()
     }
 
+    private fun initObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getMovieNowShowing().observe(viewLifecycleOwner, {
+                movieNowShowingAdapter.submitData(lifecycle, it)
+            })
+
+
+            viewModel.getMoviePopular().observe(viewLifecycleOwner, {
+                moviePopularAdapter.submitData(lifecycle, it)
+            })
+        }
+    }
 
     private fun setupMovieSearch() {
         binding.edSearchMovie.setOnFocusChangeListener{ view, hasFocus ->

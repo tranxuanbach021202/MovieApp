@@ -66,7 +66,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_76pxh"
+            android:layout_marginTop="@dimen/_80pxh"
             android:orientation="vertical"
             android:id="@+id/search_movie"
             android:visibility="gone"
@@ -90,14 +90,13 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:id="@+id/movie_list"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="@dimen/_80pxh"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/_24pxh"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -110,6 +109,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="61dp"
                     android:layout_height="21dp"
+                    android:layout_marginEnd="@dimen/_24pxh"
                     android:letterSpacing="0.01"
                     tools:text="See more"
                     android:ellipsize="end"
@@ -123,28 +123,47 @@
                     android:paddingTop="4dp" />
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_16pxh"
+                android:layout_height="@dimen/_300pxh">
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="15dp"
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMovieNow"
-                    android:layout_marginStart="20dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/_24pxh"
+                    android:clipToPadding="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_16pxh"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Popular"
                     android:layout_weight="0.65"
+                    android:layout_marginStart="@dimen/_24pxh"
                     style="@style/txtMerriweatherblack16"
                     android:layout_height="wrap_content" />
 
@@ -159,18 +178,36 @@
                     android:text="See more"
                     android:paddingBottom="4dp"
                     android:paddingEnd="8dp"
+                    android:layout_marginEnd="@dimen/_24pxh"
                     style="@style/btnRoundedOutline"
                     android:paddingStart="8dp"
                     android:paddingTop="4dp" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_height="wrap_content"
-                android:id="@+id/rvMoviePopular"/>
+                android:layout_marginTop="@dimen/_16pxh"
+                android:layout_height="match_parent">
 
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMoviePopular"
+                    android:layout_width="match_parent"
+                    android:paddingStart="@dimen/_24pxh"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
 

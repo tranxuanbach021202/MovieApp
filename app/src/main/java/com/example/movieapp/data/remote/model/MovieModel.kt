@@ -1,30 +1,28 @@
-package com.example.movieapp.data.models
+package com.example.movieapp.data.remote.model
 
 import androidx.room.PrimaryKey
+import com.example.movieapp.domain.model.GenresMovie
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieModel(
     @SerializedName("id")
     @PrimaryKey
     var id: Int,
     @SerializedName("title")
-    val title: String,
+    var title: String = "",
     @SerializedName("poster_path")
-    val poster_path: String,
+    var poster_path: String = "",
     @SerializedName("vote_average")
-    val vote_average: Float,
-    @SerializedName("genre_ids")
-    val genreIds : List<Int>,
+    var vote_average: Float,
+    var genreIds : List<Int>,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    var backdropPath: String = "",
     @SerializedName("original_language")
-    val originalLanguage: String,
+    var originalLanguage: String = "",
     @SerializedName("original_title")
-    val originalTitle: String,
+    var originalTitle: String = "",
     @SerializedName("runtime")
-    val runTime: Int,
+    var runTime: Int,
     @SerializedName("overview")
-    val overview: String
-) {
-
-}
+    var overview: String = ""
+)

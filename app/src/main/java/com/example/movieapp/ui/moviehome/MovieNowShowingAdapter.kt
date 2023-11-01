@@ -2,15 +2,19 @@ package com.example.movieapp.ui.moviehome
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.movieapp.R
 import com.example.movieapp.databinding.MovieNowShowingItemBinding
-import com.example.movieapp.data.models.Movie
-import com.example.movieapp.ui.common.MyViewHolder
+import com.example.movieapp.domain.model.Movie
+
 
 class MovieNowShowingAdapter(
-    private val onClick: (Movie) -> Unit
-) : PagingDataAdapter<Movie, MyViewHolder<MovieNowShowingItemBinding>>(
+    private val onClick: (movie: Movie) -> Unit
+) : PagingDataAdapter<Movie, MovieNowShowingAdapter.MyViewHolder>(
     MOVIE_COMPARATOR
 ) {
 
@@ -25,22 +29,34 @@ class MovieNowShowingAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder<MovieNowShowingItemBinding>, position: Int) {
-        val movie = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClick(movie!!)
-        }
-        holder.binding.apply {
-            item = movie
-            executePendingBindings()
-        }
+    override fun onBindViewHolder(holder: MyViewHolder,position: Int) {
+        getItem(position)?.let{holder.bind(it)}
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MyViewHolder<MovieNowShowingItemBinding> {
-        val binding = MovieNowShowingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    ): MyViewHolder{
+        val binding = DataBindingUtil.inflate<MovieNowShowingItemBinding>(LayoutInflater.from(parent.context), R.layout.movie_now_showing_item,
+            parent, false)
         return MyViewHolder(binding)
+    }
+
+    inner class MyViewHolder(private val binding: MovieNowShowingItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val context = binding.root.context
+
+        init {
+            binding.root.setOnClickListener {
+                val movieItem = getItem(absoluteAdapterPosition)
+                movieItem?.let{onClick(it)}
+            }
+
+        }
+
+        fun bind(item: Movie) {
+            with(binding) {
+                itemMovie = item
+            }
+        }
     }
 }

@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.movieapp.R
+import com.example.movieapp.domain.model.GenresMovie
 
 class GenresMyAdapter(
-    private val genres : List<Int>,
     private val context: Context
 ) : BaseAdapter(){
-
 
     // for layout inflater, course image view and course text view.
     private var layoutInflater: LayoutInflater? = null
@@ -20,8 +19,16 @@ class GenresMyAdapter(
 
     private lateinit var txtGenres : TextView
 
+    private val genresList: MutableList<GenresMovie> = mutableListOf()
+
+    fun setGenres(genres: List<GenresMovie>) {
+        genresList.clear()
+        genresList.addAll(genres)
+        notifyDataSetChanged()
+    }
+
     override fun getCount(): Int {
-        return genres.size
+        return genresList.size
     }
 
     override fun getItem(position: Int): Any ?{
@@ -51,9 +58,9 @@ class GenresMyAdapter(
 
         txtGenres = convertView!!.findViewById(R.id.txtGenres)
 
-        txtGenres.text = genres.get(position).toString()
+        txtGenres.text = genresList.get(position).name.toString()
 
         return convertView
-
     }
+
 }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item_cast"
-            type="com.example.movieapp.data.models.Cast" />
+            type="com.example.movieapp.domain.model.Cast" />
     </data>
 
     <LinearLayout
